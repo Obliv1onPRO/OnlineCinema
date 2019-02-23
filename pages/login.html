@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <div class="container">
+        <div id="form">
+            <p class="h4" style="color: #939393;">Авторизация</p>
+            <form action="/login" class="container" id="registration_form" name="reg" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="row">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </form>
+            {% if error %}
+                <div class="row">
+                    <span class="text-danger">{{ error }}</span>
+                </div>
+            {% endif %}
+            <div class="row align-middle">
+                <input type="submit" form="registration_form" value="Войти" id="reg">
+                <span style="margin-left: 15px">Ещё нет аккаунта?<a href="/reg"
+                                                                     style="text-decoration: none; color: #F97300; font-weight: 600;">Зарегистрироваться</a>!</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

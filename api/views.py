@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from api import forms, models
@@ -32,3 +33,24 @@ def reg(request):
 def index(request):
     context = {}
     return render(request, 'index.html', context)
+
+def login(request):
+    context = {}
+    context['form'] = forms.LoginForm()
+
+    form = forms.LoginForm(request.POST)
+    if form.is_valid():
+        username = form.data['username']
+        password = form.data['password']
+
+        if models.User.objects.filter(username=username).exists():
+            if models.User.objects.get(username=username).check_password(password):
+                user = models.User.objects.get(username=username)
+                auth.authenticate(username=username, password=password)
+                auth.login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                context['error'] = "Пароль введён неверно"
+        else:
+            context['error'] = "Пользователя с таким ником не существует"
+    return render(request, 'login.html', context)
