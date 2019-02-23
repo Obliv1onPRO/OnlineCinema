@@ -1,0 +1,124 @@
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    height: 100vh;
+    padding: 0;
+}
+
+.navbar {
+    background: #F97300;
+}
+
+.nav-link, .navbar-brand {
+    color: #f4f4f4;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-link {
+    margin-right: 1em !important;
+}
+
+.nav-link:hover {
+    background: #f4f4f4;
+    color: #f97300;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.navbar-toggler {
+    background: #fff !important;
+}
+
+
+.header {
+    width: 100%;
+
+    background-image: url('../imgs/components/headerback.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: absolute;
+    min-height: calc(100% + 10px);
+    min-width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(244, 244, 244, 0.79);
+}
+
+.description {
+    position: absolute;
+    top: 30%;
+    margin: auto;
+    padding: 2em;
+}
+
+.description h3 {
+    color: #F97300;
+}
+
+.description p {
+    color: #666;
+    font-size: 20px;
+    width: 50%;
+}
+
+.description button {
+    border: 1px solid #F97300;
+    background: #F97300;
+    color: #fff;
+}
+
+.about_title {
+    position: absolute;
+    top: 10%;
+    color: #F97300;
+}
+
+.portfolio {
+    margin: 4em 0;
+    position: relative;
+}
+
+.rooms_title {
+    position: absolute;
+    top: 10%;
+    color: #F97300;
+    margin: 2em;
+}
+
+.portfolio img {
+    height: 15rem;
+    width: 100%;
+    margin: 1em;
+}
+
+#create{
+    border: 1px solid #F97300;
+    background: #F97300;
+    color: #fff;
+    height: 100%;
+    width: 50%;
+}
+
+#create-room > .container > .row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    height: 150px;
+}
+
+footer{
+    width: 100%;
+}

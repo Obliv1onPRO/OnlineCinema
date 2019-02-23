@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg fixed-top ">
+            <a class="navbar-brand" href="#">Главная</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav mr-4">
+                    <li class="nav-item">
+                        <a class="nav-link" data-value="about_service" href="#">О сервисе</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-value="public_rooms" href="#">Публичные залы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-value="create-room" href="#">Создать зал</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <header class="header">
+            <div class="overlay">
+                <div class="container">
+                    <div class="description ">
+                        <h3>
+                            Добро пожаловать в первый онлайн кинотеатр!
+                        </h3>
+                        <p>
+                            Online cinema - первый веб-ресурс, на котором ты можешь смотреть разные фильмы вместе с
+                            кем-то, нахлдясь в разных местах!
+                        </p>
+                        <button class="btn btn-outline-secondary">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="container-fluid" id="about_service">
+        <h3 class="about_title">О сервисе</h3>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <img src="images/team-3.jpg" class="img-fluid">
+                <span class="text-justify">S.Web Developer</span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 desc">
+                <h3>D.John</h3>
+                <p>
+                    ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="public_rooms">
+        <h3 class="rooms_title">Публичные залы</h3>
+        <div class="portfolio">
+            <div class="container">
+                <div class="row">
+                    <a class="col-lg-4 col-md-4 col-sm-12" href="#">
+                        <img src="{% static 'imgs/video_previews/free room.png' %}" class="img-fluid">
+                    </a>
+                    <a class="col-lg-4 col-md-4 col-sm-12" href="#">
+                        <img src="{% static 'imgs/video_previews/free room.png' %}" class="img-fluid">
+                    </a>
+                    <a class="col-lg-4 col-md-4 col-sm-12" href="#">
+                        <img src="{% static 'imgs/video_previews/free room.png' %}" class="img-fluid">
+                    </a>
+                    <a class="col-lg-4 col-md-4 col-sm-12" href="#">
+                        <img src="{% static 'imgs/video_previews/free room.png' %}" class="img-fluid">
+                    </a>
+                    <a class="col-lg-4 col-md-4 col-sm-12" href="#">
+                        <img src="{% static 'imgs/video_previews/free room.png' %}" class="img-fluid">
+                    </a>
+                    <a class="col-lg-4 col-md-4 col-sm-12" href="#">
+                        <img src="{% static 'imgs/video_previews/free room.png' %}" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="create-room">
+        <div class="container">
+            <div class="row text-center">
+                <button class="btn btn-outline-secondary" id="create">Создать свой зал</button>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark pt-4 text-white">
+
+        <!-- Footer Elements -->
+        <div class="container text-white">
+
+            <!-- Call to action -->
+            <ul class="list-unstyled list-inline text-white text-center py-2">
+                <li class="list-inline-item">
+                    <h5 class="mb-1">Register for free</h5>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!" class="btn btn-outline-light btn-rounded" style="border-radius: 50px">Sign up!</a>
+                </li>
+            </ul>
+            <!-- Call to action -->
+
+        </div>
+        <!-- Footer Elements -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="#">Online Cinema</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+{% endblock %}

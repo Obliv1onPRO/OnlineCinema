@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<div class="container">
+    <div id="form">
+        <p class="h4" style="color: #939393;">Регистрация</p>
+        <form action="/reg" class="container" id="registration_form" name="reg" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="row">
+                    {{ field }}
+                </div>
+            {% endfor %}
+        </form>
+        <div class="row align-middle" >
+            <input type="checkbox" name="agreement" class="align-middle"> <span style="margin-left: 7px">Я согласен(а) со всеми пунктами <a href="#" style="text-decoration: none; color: #F97300; font-weight: 600;">Политики конфиденциальности</a></span>
+        </div>
+        {% if error %}
+        <div class="row">
+            <span class="text-danger">{{ error }}</span>
+        </div>
+        {% endif %}
+        <div class="row align-middle">
+            <input type="submit" form="registration_form" value="Зарегестрироваться" id="reg">
+            <span style="margin-left: 15px">Уже есть аккаунт? <a href="#" style="text-decoration: none; color: #F97300; font-weight: 600;">Войти</a>!</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
