@@ -54,3 +54,8 @@ def login(request):
         else:
             context['error'] = "Пользователя с таким ником не существует"
     return render(request, 'login.html', context)
+
+
+def create_room(request):
+    context = {}
+    return render(request, 'create_room.html', context)
