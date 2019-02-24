@@ -16,3 +16,7 @@ $("#room_type").change(function () {
     }
   }
 });
+
+$(".invite").click(function () {
+
+});

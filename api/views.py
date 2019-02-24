@@ -59,3 +59,8 @@ def login(request):
 def create_room(request):
     context = {}
     return render(request, 'create_room.html', context)
+
+
+def profile(request):
+    context = {}
+    return render(request, 'profile.html', context)

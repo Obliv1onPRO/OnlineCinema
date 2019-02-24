@@ -1,0 +1,53 @@
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+
+    position: relative;
+    height: 100vh;
+    padding: 0;
+    background-color: #1c1c1c;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+
+.nav-link, .navbar-brand {
+    color: #f4f4f4;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-link {
+    margin-right: 1em !important;
+}
+
+.nav-link:hover {
+    background: #f4f4f4;
+    color: #f97300;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.navbar-toggler {
+    background: #fff !important;
+}
+
+
+#main_container{
+    padding: 30px;
+    margin: 0;
+    width: 100%;
+}
+
+#friends{
+    min-height: 380px;
+}
