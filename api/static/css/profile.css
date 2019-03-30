@@ -49,5 +49,58 @@
 }
 
 #friends{
+    padding: 0;
     min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#friends > .friend{
+    display: flex;
+    width: 100%;
+    height: 80px;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #2B3137;
+    border: 1px solid #5f6061;
+}
+
+#friends > .friend > div{
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#friends > .friend > .avatar > img{
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+#friends > .friend > .info > span{
+    font-size: 12px;
+}
+
+#friends > .friend:hover{
+    background-color: #939393;
+}
+
+#account-info{
+    min-height: 140px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#account-info > .avatar > img{
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    border-radius: 7px;
 }

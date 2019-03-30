@@ -1,3 +1,7 @@
+import json
+
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -16,11 +20,17 @@ def reg(request):
         email = form.data['email']
         password = form.data['password']
 
-        if not models.User.objects.filter(username=username).exists():
-            if not models.User.objects.filter(email=email).exists():
-                user = models.User.objects.create_user(username=username, password=password, email=email)
-                auth.authenticate(username=username, password=password)
-                auth.login(request, user)
+        if not models.Profile.objects.filter(login=username).exists():
+            if not models.Profile.objects.filter(email=email).exists():
+                standart_user = models.User.objects.create_user(username=username, password=password, email=email)
+                user = models.Profile()
+                user.login=username
+                user.password=password
+                user.email=email
+                user.standart_user_id = standart_user.id
+                usr = auth.authenticate(username=username, password=password)
+                auth.login(request, usr)
+                user.save()
                 return HttpResponseRedirect('/')
             else:
                 context['error'] = "Пользователь с таким email уже существует"
@@ -43,12 +53,12 @@ def login(request):
         username = form.data['username']
         password = form.data['password']
 
-        if models.User.objects.filter(username=username).exists():
-            if models.User.objects.get(username=username).check_password(password):
-                user = models.User.objects.get(username=username)
-                auth.authenticate(username=username, password=password)
-                auth.login(request, user)
-                return HttpResponseRedirect('/')
+        if models.Profile.objects.filter(login=username).exists():
+            if models.Profile.objects.get(login=username).password == password:
+                user = models.Profile.objects.get(login=username)
+                usr = auth.authenticate(username=username, password=password)
+                auth.login(request, usr)
+                return HttpResponseRedirect('/profile')
             else:
                 context['error'] = "Пароль введён неверно"
         else:
@@ -56,11 +66,41 @@ def login(request):
     return render(request, 'login.html', context)
 
 
+@login_required
 def create_room(request):
     context = {}
+
+    if request.method == 'POST':
+        prs = models.Profile.objects.all()
+        # creator = models.Profile.objects.get(login=request.user.username) #FIXME
+
+        data = request.body.decode('utf-8')
+        data = json.load(data)
+
+        name = data['name']
+        type = request.POST.type
+        iframe = request.POST.iframe
+
+        room = models.Room()
+        room.name = name
+        room.type = type
+        room.iframe = iframe
+        room.creator = prs
+        
+
     return render(request, 'create_room.html', context)
 
-
+@login_required
 def profile(request):
     context = {}
+    user = models.Profile.objects.get(pk=request.user.pk)
+    context['friends'] = user.friends
+    if context['friends'] is None:
+        context['friends'] = []
+
     return render(request, 'profile.html', context)
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
