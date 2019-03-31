@@ -71,21 +71,23 @@ def create_room(request):
     context = {}
 
     if request.method == 'POST':
-        prs = models.Profile.objects.all()
-        # creator = models.Profile.objects.get(login=request.user.username) #FIXME
+        # prs = models.Profile.objects.all()
+        creator = models.Profile.objects.get(login=request.user.username) #FIXME
 
         data = request.body.decode('utf-8')
-        data = json.load(data)
+        data = json.loads(data)
 
         name = data['name']
-        type = request.POST.type
-        iframe = request.POST.iframe
+        type = data['type']
+        iframe = data['iframe']
 
         room = models.Room()
         room.name = name
         room.type = type
         room.iframe = iframe
-        room.creator = prs
+        room.creator = creator
+
+        return HttpResponseRedirect('/room')
         
 
     return render(request, 'create_room.html', context)

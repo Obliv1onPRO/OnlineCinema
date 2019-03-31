@@ -29,14 +29,16 @@ $('#submit').click(function () {
 
     type = (type == 'on' ? false : true);
 
-    let data = JSON.stringify({'name': name, 'type': type, 'iframe': iframe, 'csrfmiddlewaretoken': csrf});
+    let data = JSON.stringify({'name': name, 'type': type, 'iframe': iframe});
     // let data = {'name' : name, 'type' : type, 'iframe' : iframe, 'csrfmiddlewaretoken' : csrf};
-
+    //
     let req = new XMLHttpRequest();
-    req.open('POST', '/create', true);
+    req.open('POST', '/create', false);
     req.setRequestHeader('Content-type', 'application/json');
     req.setRequestHeader('X-CSRFToken', csrf);
+    req.onload = async () => {
+        // resp = JSON.parse(req.responseText);
+        console.log(req.responseText)
+    };
     req.send(data);
-    // req.onload = async () => {
-    // };
 });
