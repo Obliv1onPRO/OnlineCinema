@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/room.css' %}">
+    <div class="container-fluid" id="main">
+        <nav class="navbar navbar-expand-lg fixed-top bg-dark" id="navbar">
+            <a class="navbar-brand" href="/">Главная</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav mr-4">
+                    <li class="nav-item">
+                        <a class="nav-link" data-value="about_service" href="#">О сервисе</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-value="public_rooms" href="#">Публичные залы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-value="create-room" href="#">Создать зал</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="main_container" style="margin-top: 40px;">
+            <div class="row" style="padding-left: 15px; margin-bottom: 30px">
+                <div id="room_info" class="col-md-4 col-lg-3 bg-dark border border-dark rounded row">
+                    <div class="cover col-4">
+                        <img src="">
+                    </div>
+                    <div class="col-8" style="display: flex; flex-direction: column">
+                        <span id="room_name" class="text-light">Govnoed-party</span>
+                        <span id="video_label" class="text-light">Трезвый водитель</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 20px">
+                <div class="col-md-2 col-lg-1"></div>
+                <div class="col-md-7 col-lg-7 bg-dark border border-dark rounded embed-responsive embed-responsive-16by9" id="video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/SSOkZPwbOm0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="col-md-1 col-lg-1"></div>
+                <div class="col-md-2 col-lg-3 bg-dark border border-dark rounded" id="chat">
+                    <div class="text-light"
+                         style="font-size: 21px; height: 30px; display: flex; flex-direction: row; justify-content: center">
+                        <span>Чат</span>
+                    </div>
+                    <div style="background-color: #1c1c1c; height: 395px; margin-bottom: 10px; border-radius: 3px"></div>
+                    <div>
+                        <textarea name="chat" id="chat-area" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-dark" id="viewers">
+            <div class="viewer row">
+                <div class="col-5 avatar">
+                    <img src="">
+                </div>
+                <div class="col-7">
+                    <span class="text-light" style="font-size: 18px">Govnoed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

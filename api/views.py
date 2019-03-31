@@ -10,7 +10,7 @@ from api import forms, models
 from django.contrib import auth
 # Create your views here.
 
-def reg(request):
+def reg_view(request):
     context = {}
     context['form'] = forms.RegistationForm()
 
@@ -44,7 +44,7 @@ def index(request):
     context = {}
     return render(request, 'index.html', context)
 
-def login(request):
+def login_view(request):
     context = {}
     context['form'] = forms.LoginForm()
 
@@ -91,7 +91,7 @@ def create_room(request):
     return render(request, 'create_room.html', context)
 
 @login_required
-def profile(request):
+def profile_view(request):
     context = {}
     user = models.Profile.objects.get(pk=request.user.pk)
     context['friends'] = user.friends
@@ -104,3 +104,8 @@ def profile(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def room_view(request):
+    context = {}
+    return render(request, 'room.html', context)
