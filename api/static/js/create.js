@@ -25,13 +25,13 @@ $('#submit').click(function () {
     let name = $('#room_name').val();
     let type = $('#room_type').val();
     let iframe = $('#iframe').val();
+    let duration = $('#room_lifetime_duration').val();
     let csrf = $('input[name=csrfmiddlewaretoken]').val();
 
     type = (type == 'on' ? false : true);
 
-    let data = JSON.stringify({'name': name, 'type': type, 'iframe': iframe});
-    // let data = {'name' : name, 'type' : type, 'iframe' : iframe, 'csrfmiddlewaretoken' : csrf};
-    //
+    let data = JSON.stringify({'name': name, 'type': type, 'iframe': iframe, 'duration' : duration});
+
     let req = new XMLHttpRequest();
     req.open('POST', '/create', false);
     req.setRequestHeader('Content-type', 'application/json');

@@ -20,12 +20,25 @@
                        type="checkbox">
             </div>
             <div class="row">
-                <span class="d-inline-block" data-toggle="popover" data-trigger="hover" data-content="iframe есть почти у всех видео, и у всех видео в youtube">
+                <span class="d-inline-block" data-toggle="popover" data-trigger="hover"
+                      data-content="iframe есть почти у всех видео, и у всех видео в youtube">
                     <span>iframe видео</span>
                 </span>
             </div>
             <div class="row">
                 <textarea class="form-control" id="iframe" rows="3"></textarea>
+            </div>
+            <div class="row" style="display: flex; flex-direction: row; align-items: flex-start">
+                <span>Продолжительность использования комнаты</span>
+            </div>
+            <div class="row">
+                <div class="input-group mb-3" style="width: 360px">
+                    <input type="number" max="3" min="1" class="form-control" placeholder="Продолжительность"
+                           aria-label="Продолжительность" aria-describedby="duration" id="room_lifetime_duration">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="duration">ч</span>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <span id="invite_label" style="display: none">Пригласить друзей на просмотр</span>

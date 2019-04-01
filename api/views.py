@@ -1,3 +1,4 @@
+import datetime
 import json
 
 from django.contrib.auth import logout
@@ -71,7 +72,6 @@ def create_room(request):
     context = {}
 
     if request.method == 'POST':
-        # prs = models.Profile.objects.all()
         creator = models.Profile.objects.get(login=request.user.username) #FIXME
 
         data = request.body.decode('utf-8')
@@ -80,14 +80,25 @@ def create_room(request):
         name = data['name']
         type = data['type']
         iframe = data['iframe']
+        duration = data['duration']
+
+        for r in models.Room.objects.all():
+            r.delete()
 
         room = models.Room()
         room.name = name
         room.type = type
         room.iframe = iframe
         room.creator = creator
+        room.duration = duration
+        room.created_at = datetime.datetime.now()
+        room.save()
+        room.viewers.add(creator)
 
-        return HttpResponseRedirect('/room')
+        creator.current_room_id = room.id
+        creator.save()
+
+        return '/room'
         
 
     return render(request, 'create_room.html', context)
@@ -108,6 +119,7 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
+@login_required
 def room_view(request):
     context = {}
     return render(request, 'room.html', context)
