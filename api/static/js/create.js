@@ -33,12 +33,12 @@ $('#submit').click(function () {
     let data = JSON.stringify({'name': name, 'type': type, 'iframe': iframe, 'duration' : duration});
 
     let req = new XMLHttpRequest();
-    req.open('POST', '/create', false);
+    req.open('POST', '/create/', false);
     req.setRequestHeader('Content-type', 'application/json');
     req.setRequestHeader('X-CSRFToken', csrf);
     req.onload = async () => {
-        // resp = JSON.parse(req.responseText);
-        console.log(req.responseText)
+        resp = JSON.parse(req.responseText);
+        window.location.href = `/room/${resp}`;
     };
     req.send(data);
 });

@@ -1,11 +1,15 @@
 import datetime
 import json
 
+import django
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.generic import View as generic_view
+
 from api import forms, models
 
 from django.contrib import auth
@@ -67,12 +71,20 @@ def login_view(request):
     return render(request, 'login.html', context)
 
 
-@login_required
-def create_room(request):
-    context = {}
+@method_decorator(login_required, name='dispatch')
+class RoomCreating(generic_view):
 
-    if request.method == 'POST':
-        creator = models.Profile.objects.get(login=request.user.username) #FIXME
+    def get(self, request):
+        context = {}
+
+        creator = models.Profile.objects.get(login=request.user.username)  # FIXME
+        if creator.current_room_id is not None:
+            return HttpResponseRedirect('/room/' + str(creator.current_room_id))
+
+        return render(request, 'create_room.html', context)
+
+    def post(self, request):
+        creator = models.Profile.objects.get(login=request.user.username)  # FIXME
 
         data = request.body.decode('utf-8')
         data = json.loads(data)
@@ -91,17 +103,15 @@ def create_room(request):
         room.iframe = iframe
         room.creator = creator
         room.duration = duration
-        room.created_at = datetime.datetime.now()
+        # room.created_at = datetime.datetime.now()
         room.save()
         room.viewers.add(creator)
 
         creator.current_room_id = room.id
         creator.save()
 
-        return '/room'
-        
+        return HttpResponse(str(room.id))
 
-    return render(request, 'create_room.html', context)
 
 @login_required
 def profile_view(request):
@@ -120,6 +130,6 @@ def logout_view(request):
 
 
 @login_required
-def room_view(request):
+def room_view(request, id):
     context = {}
     return render(request, 'room.html', context)
